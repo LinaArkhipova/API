@@ -1,7 +1,4 @@
 {
-	
-	
-	
 	"info": {
 		"_postman_id": "0b9df64a-ab79-4643-82c8-ee57c235de73",
 		"name": "R_shop",
@@ -93,7 +90,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\":\"1011363\",\"contentType\":\"Task\",\"attaches\":[],\"statement\":\"<p>Привет, мир</p>\"}",
+					"raw": "{\"id\":\"1011363\",\"contentType\":\"Task\",\"attaches\":[],\"statement\":\"<p>Привет, человек</p>\"}",
 					"options": {
 						"raw": {
 							"language": "json"
