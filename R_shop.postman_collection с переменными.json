@@ -8,6 +8,19 @@
 	"item": [
 		{
 			"name": "authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_1\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -22,12 +35,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "Exploratory1@1.1",
+							"value": "{{username_1}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Exploratory1@1.1",
+							"value": "{{password_1}}",
 							"type": "text"
 						},
 						{
@@ -47,7 +60,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "MTFjODllNWEwZjI4NWFjNTUwOTE3OWY0Mjk4YmY1NjVhYzc3OWZhMTE0Y2QyZWM3ZmVjOTlkNjg3MGE1NjYwNg"
+						"token": "{{access_token_1}}"
 					}
 				},
 				"method": "POST",
@@ -66,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"contentType\": \"Task\",\r\n  \"name\": \"ИВАН\",\r\n  \"isUrgent\": false,\r\n  \"isTemplate\": false,\r\n  \"statement\": \"<p>Задача первого второму</p>\",\r\n  \"responsible\": {\r\n    \"id\": \"1000105\",\r\n    \"contentType\": \"Employee\"\r\n  },\r\n  \"deadline\": null,\r\n  \"parent\": null\r\n}\r\n",
+					"raw": "{\r\n  \"contentType\": \"Task\",\r\n  \"name\": \"Лина\",\r\n  \"isUrgent\": false,\r\n  \"isTemplate\": false,\r\n  \"statement\": \"<p>Задача для Емплоер_двау</p>\",\r\n  \"responsible\": {\r\n    \"id\": \"{{employee_1_id}}\",\r\n    \"contentType\": \"Employee\"\r\n  },\r\n  \"deadline\": null,\r\n  \"parent\": null\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,26 +96,39 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "ODdmMjZlOWQ2NTg4ZjYxYTQ1NGU3ODAyZTA3NjZlZjM2YjdiY2Y2YzIzZGNmMzQ5MDVkODMyNzljZmVhYTQ0Mw"
+						"token": "{{access_token_1}}"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\":\"1011363\",\"contentType\":\"Task\",\"attaches\":[],\"statement\":\"<p>Привет, человек</p>\"}",
+					"raw": "{\"id\":\"{{task_id}}\",\"contentType\":\"Task\",\"attaches\":[],\"statement\":\"<p>Привет, мир </p>\"}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "https://radio-shop.megaplan.by/api/v3/task/1011363"
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}"
 			},
 			"response": []
 		},
 		{
 			"name": "authorization_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_2\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -117,12 +143,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "Exploratory2@1.1",
+							"value": "{{username_2}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Exploratory2@1.1",
+							"value": "{{password_2}}",
 							"type": "text"
 						},
 						{
@@ -142,7 +168,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "MzYwYzJjY2VjMGVkMmZlN2EzZTU3M2MxNGE5OWY4NmQ5OTBjMzdlYTJkOThkNWM1ZDdmN2M1NTc5ZGNkNWI3Zg"
+						"token": "{{access_token_2}}"
 					}
 				},
 				"method": "POST",
@@ -156,7 +182,7 @@
 						}
 					}
 				},
-				"url": "https://radio-shop.megaplan.by/api/v3/task/1011363/doAction"
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}"
 			},
 			"response": []
 		},
@@ -166,7 +192,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "ZTNmYmUxMjBhMTU4MmJlOTY0NTJjMzg2OThlNzlmY2RjNzU1NWNjZmZjOGM2NWI3NTYwMjNmNTY1MmY2MGE2Zg"
+						"token": "{{access_token_2}}"
 					}
 				},
 				"method": "POST",
@@ -180,7 +206,7 @@
 						}
 					}
 				},
-				"url": "https://radio-shop.megaplan.by/api/v3/task/1011363/doAction"
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}"
 			},
 			"response": []
 		},
@@ -190,14 +216,14 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "ZTNmYmUxMjBhMTU4MmJlOTY0NTJjMzg2OThlNzlmY2RjNzU1NWNjZmZjOGM2NWI3NTYwMjNmNTY1MmY2MGE2Zg"
+						"token": "{{access_token_2}}"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"entities\":[{\"id\":\"1011363\",\"contentType\":\"Task\"}],\"withNotifications\":true,\"contentType\":\"MassActionAppendCollection\",\"value\":[{\"contentType\":\"Comment\",\"content\":\"<p>Привет</p>\",\"attaches\":[],\"workTime\":null,\"workDate\":{\"contentType\":\"DateTime\",\"value\":\"2025-02-28T19:36:13.082Z\"},\"completed\":0,\"owner\":{\"id\":\"1000105\",\"contentType\":\"Employee\"}}],\"field\":\"comments\"}",
+					"raw": "{\"entities\":[{\"id\":\"{{task_id}}\",\"contentType\":\"Task\"}],\"withNotifications\":true,\"contentType\":\"MassActionAppendCollection\",\"value\":[{\"contentType\":\"Comment\",\"content\":\"<p>Привет</p>\",\"attaches\":[],\"workTime\":null,\"workDate\":{\"contentType\":\"DateTime\",\"value\":\"2025-02-28T19:36:13.082Z\"},\"completed\":0,\"owner\":{\"id\":\"{{employee_1_id}}\",\"contentType\":\"Employee\"}}],\"field\":\"comments\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -210,6 +236,19 @@
 		},
 		{
 			"name": "authorization_copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_1\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -224,12 +263,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "Exploratory1@1.1",
+							"value": "{{username_1}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Exploratory1@1.1",
+							"value": "{{password_1}}",
 							"type": "text"
 						},
 						{
@@ -249,7 +288,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "Yjk0NmVmM2JhZGM5MjM0OThhNTRiZWJlNWI2ZDdhNjBhNjNiZmIwODM4ZDcyNmI1NDc2NjliY2RkMTczMTcwMA"
+						"token": "{{access_token_1}}"
 					}
 				},
 				"method": "POST",
@@ -263,7 +302,7 @@
 						}
 					}
 				},
-				"url": "https://radio-shop.megaplan.by/api/v3/task/1011363/doAction"
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}"
 			},
 			"response": []
 		},
@@ -273,14 +312,14 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "Yjk0NmVmM2JhZGM5MjM0OThhNTRiZWJlNWI2ZDdhNjBhNjNiZmIwODM4ZDcyNmI1NDc2NjliY2RkMTczMTcwMA"
+						"token": "{{access_token_1}}"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"entities\":[{\"id\":\"1011363\",\"contentType\":\"Task\"}],\"withNotifications\":false,\"contentType\":\"MassActionDelete\"}",
+					"raw": "{\"entities\":[{\"id\":\"{{task_id}}\",\"contentType\":\"Task\"}],\"withNotifications\":false,\"contentType\":\"MassActionDelete\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -290,6 +329,75 @@
 				"url": "https://radio-shop.megaplan.by/api/v3/massActionDelete"
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token_1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "access_token_2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "task_id",
+			"value": "1011363",
+			"type": "string"
+		},
+		{
+			"key": "employee_1_id",
+			"value": "1000105",
+			"type": "string"
+		},
+		{
+			"key": "employee_2_id",
+			"value": "1000106",
+			"type": "string"
+		},
+		{
+			"key": "username_1",
+			"value": "Exploratory1@1.1",
+			"type": "string"
+		},
+		{
+			"key": "password_1",
+			"value": "Exploratory1@1.1",
+			"type": "string"
+		},
+		{
+			"key": "username_2",
+			"value": "Exploratory2@1.1",
+			"type": "string"
+		},
+		{
+			"key": "password_2",
+			"value": "Exploratory2@1.1",
+			"type": "string"
 		}
 	]
 }
