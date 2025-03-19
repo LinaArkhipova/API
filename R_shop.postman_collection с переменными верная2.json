@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "0b9df64a-ab79-4643-82c8-ee57c235de73",
+		"name": "R_shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41735100"
+	},
+	"item": [
+		{
+			"name": "authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_1\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "ZDBiMzI3YTlmYjVlNTc5ODA1ZDViMzU0MDA3MGEzODI0Mzg2Njc1ZTM0OTc4YWZiZDU1ZjIzNzJmZGI4MWIwZQ"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username_1}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password_1}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/auth/access_token"
+			},
+			"response": []
+		},
+		{
+			"name": "employee_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"if (responseJson && responseJson.data && responseJson.data.id) {\r",
+							"    pm.environment.set(\"task_id\", responseJson.data.id);\r",
+							"    console.log(\"Task ID set to: \" + responseJson.data.id);\r",
+							"} else {\r",
+							"    console.error(\"Task ID not found in response.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_1}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <ZDBiMzI3YTlmYjVlNTc5ODA1ZDViMzU0MDA3MGEzODI0Mzg2Njc1ZTM0OTc4YWZiZDU1ZjIzNzJmZGI4MWIwZQ>",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contentType\": \"Task\",\r\n  \"name\": \"Лина\",\r\n  \"isUrgent\": false,\r\n  \"isTemplate\": false,\r\n  \"statement\": \"<p>Задача для Емплоер_двау</p>\",\r\n  \"responsible\": {\r\n    \"id\": \"{{employee_1_id}}\",\r\n    \"contentType\": \"Employee\"\r\n  },\r\n  \"deadline\": null,\r\n  \"parent\": null\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/task"
+			},
+			"response": []
+		},
+		{
+			"name": "discription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_1}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":\"{{task_id}}\",\"contentType\":\"Task\",\"attaches\":[],\"statement\":\"<p>Привет, мир </p>\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "authorization_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_2\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "ZTNmYmUxMjBhMTU4MmJlOTY0NTJjMzg2OThlNzlmY2RjNzU1NWNjZmZjOGM2NWI3NTYwMjNmNTY1MmY2MGE2Zg"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username_2}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password_2}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/auth/access_token"
+			},
+			"response": []
+		},
+		{
+			"name": "accept_task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_2}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"action\":\"act_accept_task\",\"checkTodos\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}/doaction"
+			},
+			"response": []
+		},
+		{
+			"name": "close_task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_2}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"action\":\"act_done\",\"checkTodos\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}/doaction"
+			},
+			"response": []
+		},
+		{
+			"name": "comment_task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_2}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"entities\":[{\"id\":\"{{task_id}}\",\"contentType\":\"Task\"}],\"withNotifications\":true,\"contentType\":\"MassActionAppendCollection\",\"value\":[{\"contentType\":\"Comment\",\"content\":\"<p>Привет</p>\",\"attaches\":[],\"workTime\":null,\"workDate\":{\"contentType\":\"DateTime\",\"value\":\"2025-02-28T19:36:13.082Z\"},\"completed\":0,\"owner\":{\"id\":\"{{employee_1_id}}\",\"contentType\":\"Employee\"}}],\"field\":\"comments\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/massActionAppendCollection"
+			},
+			"response": []
+		},
+		{
+			"name": "authorization_copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"access_token_1\", responseJson.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "M2I0YmZlNDFlM2JjMWI4ODZiZGJjMWI3ZDdkNWZiNjQzMTFjMDFjMjkzMjJhOTY0NWJiZTVjMmQ4MjUyNWU3Mw"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username_1}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password_1}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/auth/access_token"
+			},
+			"response": []
+		},
+		{
+			"name": "accept_task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_1}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"action\":\"act_accept_work\",\"checkTodos\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/task/{{task_id}}/doaction"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token_1}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"entities\":[{\"id\":\"{{task_id}}\",\"contentType\":\"Task\"}],\"withNotifications\":false,\"contentType\":\"MassActionDelete\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://radio-shop.megaplan.by/api/v3/massActionDelete"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token_1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "access_token_2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "task_id",
+			"value": "1011363",
+			"type": "string"
+		},
+		{
+			"key": "employee_1_id",
+			"value": "1000105",
+			"type": "string"
+		},
+		{
+			"key": "employee_2_id",
+			"value": "1000106",
+			"type": "string"
+		},
+		{
+			"key": "username_1",
+			"value": "Exploratory1@1.1",
+			"type": "string"
+		},
+		{
+			"key": "password_1",
+			"value": "Exploratory1@1.1",
+			"type": "string"
+		},
+		{
+			"key": "username_2",
+			"value": "Exploratory2@1.1",
+			"type": "string"
+		},
+		{
+			"key": "password_2",
+			"value": "Exploratory2@1.1",
+			"type": "string"
+		}
+	]
+}
